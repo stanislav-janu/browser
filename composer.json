@@ -1,0 +1,26 @@
+{
+	"name": "stanislav-janu/browser",
+	"description": "Browser checker component",
+	"authors": [
+		{
+			"name": "Stanislav Janů",
+			"homepage": "https://www.lweb.cz"
+		}
+	],
+	"require": {
+		"php": ">=7.1.0",
+		"nette/utils": "^2.5"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "^7"
+	},
+	"autoload": {
+		"classmap": ["src/"]
+	},
+	"minimum-stability": "stable",
+	"extra": {
+		"branch-alias": {
+			"dev-master": "1.0-dev"
+		}
+	}
+}
