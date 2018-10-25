@@ -1,6 +1,7 @@
 {
 	"name": "stanislav-janu/browser",
 	"description": "Browser checker component",
+	"license": "MIT",
 	"authors": [
 		{
 			"name": "Stanislav Janů",
