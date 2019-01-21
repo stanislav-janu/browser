@@ -211,6 +211,27 @@ class BrowserTest extends TestCase
 			'version_full' => '53.0.2785.116',
 			'platform' => 'windows',
 		],
+		[
+			'ua' => 'Mozilla/5.0 (Windows NT 10.0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/42.0.2311.135 Safari/537.36 Edge/12.10136',
+			'name' => 'edge',
+			'version' => 12,
+			'version_full' => '12.10136',
+			'platform' => 'windows',
+		],
+		[
+			'ua' => 'Mozilla/5.0 (Windows NT 6.2; WOW64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/46.0.2486.0 Safari/537.36 Edge/13.9200',
+			'name' => 'edge',
+			'version' => 13,
+			'version_full' => '13.9200',
+			'platform' => 'windows',
+		],
+		[
+			'ua' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML like Gecko) Chrome/51.0.2704.79 Safari/537.36 Edge/14.14931',
+			'name' => 'edge',
+			'version' => 14,
+			'version_full' => '14.14931',
+			'platform' => 'windows',
+		],
 	];
 
 	public function testMain()
