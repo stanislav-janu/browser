@@ -1,13 +1,14 @@
-<?php declare(strict_types=1);
+<?php
+declare(strict_types=1);
 
-namespace JCode\Tests\Crypt;
+namespace JCode;
 
-use JCode\Browser;
 use PHPUnit\Framework\TestCase;
 
 class BrowserTest extends TestCase
 {
-	static $browsers = [
+	/** @var array[] */
+	public static $browsers = [
 
 		// Mac
 		[
@@ -234,30 +235,30 @@ class BrowserTest extends TestCase
 		],
 	];
 
-	public function testMain()
+	public function testMain(): void
 	{
 		foreach(self::$browsers as $browser)
 		{
 			$bd = new Browser($browser['ua']);
 
-			$this->assertSame($browser['ua'], $bd->userAgent);
-			$this->assertSame($browser['name'], $bd->name);
-			$this->assertSame($browser['version'], $bd->version);
-			$this->assertSame($browser['version_full'], $bd->versionFull);
-			$this->assertSame($browser['platform'], $bd->platform);
+			self::assertSame($browser['ua'], $bd->userAgent);
+			self::assertSame($browser['name'], $bd->name);
+			self::assertSame($browser['version'], $bd->version);
+			self::assertSame($browser['version_full'], $bd->versionFull);
+			self::assertSame($browser['platform'], $bd->platform);
 
-			$this->assertNotSame('unknown', $bd->userAgent);
-			$this->assertNotSame('unknown', $bd->name);
-			$this->assertNotSame(null, $bd->version);
-			$this->assertNotSame('unknown', $bd->versionFull);
-			$this->assertNotSame('unknown', $bd->platform);
+			self::assertNotSame('unknown', $bd->userAgent);
+			self::assertNotSame('unknown', $bd->name);
+			self::assertNotSame(null, $bd->version);
+			self::assertNotSame('unknown', $bd->versionFull);
+			self::assertNotSame('unknown', $bd->platform);
 		}
 
 		$bd = new Browser('');
-		$this->assertSame('', $bd->userAgent);
-		$this->assertSame('unknown', $bd->name);
-		$this->assertSame(null, $bd->version);
-		$this->assertSame('unknown', $bd->versionFull);
-		$this->assertSame('unknown', $bd->platform);
+		self::assertSame('', $bd->userAgent);
+		self::assertSame('unknown', $bd->name);
+		self::assertSame(null, $bd->version);
+		self::assertSame('unknown', $bd->versionFull);
+		self::assertSame('unknown', $bd->platform);
 	}
 }
