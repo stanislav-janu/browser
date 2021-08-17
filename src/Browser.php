@@ -19,28 +19,14 @@ class Browser
 	use SmartObject;
 
 
-	/** @var string */
-	private $userAgent;
-
-	/** @var string */
-	private $name;
-
-	/** @var int|null */
-	private $version;
-
-	/** @var string */
-	private $versionFull;
-
-	/** @var string */
-	private $platform;
+	private string $userAgent;
+	private string $name;
+	private ?int $version;
+	private string $versionFull;
+	private string $platform;
 
 
-	/**
-	 * Browser constructor.
-	 *
-	 * @param string|null $u_agent
-	 */
-	public function __construct(string $u_agent = null)
+	public function __construct(?string $u_agent = null)
 	{
 		if (is_null($u_agent) && isset($_SERVER['HTTP_USER_AGENT'])) {
 			$u_agent = $_SERVER['HTTP_USER_AGENT'];
@@ -129,45 +115,30 @@ class Browser
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function getUserAgent(): string
 	{
 		return $this->userAgent;
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function getName(): string
 	{
 		return $this->name;
 	}
 
 
-	/**
-	 * @return int|null
-	 */
 	public function getVersion(): ?int
 	{
 		return $this->version;
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function getVersionFull(): string
 	{
 		return $this->versionFull;
 	}
 
 
-	/**
-	 * @return string
-	 */
 	public function getPlatform(): string
 	{
 		return $this->platform;
