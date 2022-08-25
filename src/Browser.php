@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace JCode;
 
@@ -18,7 +20,6 @@ class Browser
 {
 	use SmartObject;
 
-
 	private string $userAgent;
 	private string $name;
 	private ?int $version;
@@ -28,7 +29,7 @@ class Browser
 
 	public function __construct(?string $u_agent = null)
 	{
-		if (is_null($u_agent) && isset($_SERVER['HTTP_USER_AGENT'])) {
+		if ($u_agent === null && isset($_SERVER['HTTP_USER_AGENT'])) {
 			$u_agent = $_SERVER['HTTP_USER_AGENT'];
 		}
 
@@ -50,40 +51,46 @@ class Browser
 				$platform = 'windows';
 			}
 
-			if ((Strings::match($u_agent, '/MSIE/i') !== null && Strings::match($u_agent, '/Opera/i') === null) || Strings::match($u_agent, '/Trident/i') !== null) {
+			if (
+				(
+					Strings::match($u_agent, '/MSIE/i') !== null
+					&& Strings::match($u_agent, '/Opera/i') === null
+				)
+				|| Strings::match($u_agent, '/Trident/i') !== null
+			) {
 				$name = 'IE';
-				$ub = "MSIE";
+				$ub = 'MSIE';
 			}
 			if (Strings::match($u_agent, '/Edge/i') !== null) {
 				$name = 'Edge';
-				$ub = "Edge";
+				$ub = 'Edge';
 			} elseif (Strings::match($u_agent, '/Firefox/i') !== null) {
 				$name = 'Firefox';
-				$ub = "Firefox";
+				$ub = 'Firefox';
 			} elseif (Strings::match($u_agent, '/Chrome/i') !== null) {
 				$name = 'Chrome';
-				$ub = "Chrome";
+				$ub = 'Chrome';
 			} elseif (Strings::match($u_agent, '/Safari/i') !== null) {
 				$name = 'Safari';
-				$ub = "Safari";
+				$ub = 'Safari';
 			} elseif (Strings::match($u_agent, '/Opera/i') !== null) {
 				$name = 'Opera';
-				$ub = "Opera";
+				$ub = 'Opera';
 			} elseif (Strings::match($u_agent, '/Netscape/i') !== null) {
 				$name = 'Netscape';
-				$ub = "Netscape";
+				$ub = 'Netscape';
 			}
 
 			if (isset($ub)) {
 				if (Strings::match($u_agent, '/ rv:/i') !== null) {
 					$pattern = '#rv:(?<version>[0-9|a-zA-Z.]*)#';
 					$matches = Strings::matchAll($u_agent, $pattern);
-					if (count($matches) > 0) {
+					if ($matches !== []) {
 						$version = $matches[0]['version'];
 					}
 				} else {
 					$known = ['Version', $ub, 'other'];
-					$pattern = '#(?<browser>' . join('|', $known) . ')[/ ]+(?<version>[0-9|a-zA-Z.]*)#';
+					$pattern = '#(?<browser>' . implode('|', $known) . ')[/ ]+(?<version>[0-9|a-zA-Z.]*)#';
 
 					$matches = Strings::matchAll($u_agent, $pattern);
 					$i = count($matches);
@@ -103,7 +110,7 @@ class Browser
 				$version = null;
 			} else {
 				$versionFull = $version;
-				$version = intval($version);
+				$version = (int) $version;
 			}
 		}
 
@@ -143,5 +150,4 @@ class Browser
 	{
 		return $this->platform;
 	}
-
 }

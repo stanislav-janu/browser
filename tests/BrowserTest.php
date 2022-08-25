@@ -1,4 +1,5 @@
 <?php
+
 declare(strict_types=1);
 
 namespace JCode;
@@ -7,6 +8,15 @@ use PHPUnit\Framework\TestCase;
 
 class BrowserTest extends TestCase
 {
+	/**
+	 * @var array<array{
+	 *          ua: string,
+	 *          name: string,
+	 *          version: int,
+	 *          version_full: string,
+	 *          platform: string
+	 *     }>
+	 */
 	public static array $browsers = [
 		// Mac
 		[
@@ -233,30 +243,30 @@ class BrowserTest extends TestCase
 		],
 	];
 
+
 	public function testMain(): void
 	{
-		foreach(self::$browsers as $browser)
-		{
+		foreach (self::$browsers as $browser) {
 			$bd = new Browser($browser['ua']);
 
-			self::assertSame($browser['ua'], $bd->userAgent);
-			self::assertSame($browser['name'], $bd->name);
-			self::assertSame($browser['version'], $bd->version);
-			self::assertSame($browser['version_full'], $bd->versionFull);
-			self::assertSame($browser['platform'], $bd->platform);
+			self::assertSame($browser['ua'], $bd->getUserAgent());
+			self::assertSame($browser['name'], $bd->getName());
+			self::assertSame($browser['version'], $bd->getVersion());
+			self::assertSame($browser['version_full'], $bd->getVersionFull());
+			self::assertSame($browser['platform'], $bd->getPlatform());
 
-			self::assertNotSame('unknown', $bd->userAgent);
-			self::assertNotSame('unknown', $bd->name);
-			self::assertNotSame(null, $bd->version);
-			self::assertNotSame('unknown', $bd->versionFull);
-			self::assertNotSame('unknown', $bd->platform);
+			self::assertNotSame('unknown', $bd->getUserAgent());
+			self::assertNotSame('unknown', $bd->getName());
+			self::assertNotSame(null, $bd->getVersion());
+			self::assertNotSame('unknown', $bd->getVersionFull());
+			self::assertNotSame('unknown', $bd->getPlatform());
 		}
 
 		$bd = new Browser('');
-		self::assertSame('', $bd->userAgent);
-		self::assertSame('unknown', $bd->name);
-		self::assertSame(null, $bd->version);
-		self::assertSame('unknown', $bd->versionFull);
-		self::assertSame('unknown', $bd->platform);
+		self::assertSame('', $bd->getUserAgent());
+		self::assertSame('unknown', $bd->getName());
+		self::assertSame(null, $bd->getVersion());
+		self::assertSame('unknown', $bd->getVersionFull());
+		self::assertSame('unknown', $bd->getPlatform());
 	}
 }
