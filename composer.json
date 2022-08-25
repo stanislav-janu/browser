@@ -16,7 +16,7 @@
 		"phpunit/phpunit": "^9",
 		"stanislav-janu/phpstan": "^1.0",
 		"rector/rector": "^0.14.0",
-		"efabrica/rector-nette": "0.14.x-dev"
+		"efabrica/rector-nette": "^0.14"
 	},
 	"autoload": {
 		"classmap": ["src/"]
@@ -30,7 +30,7 @@
 		"cs": "PHP_CS_FIXER_IGNORE_ENV=1 php -d memory_limit=512M temp/nette-coding-standard/ecs check src tests --preset project",
 		"cs-f": "PHP_CS_FIXER_IGNORE_ENV=1 php -d memory_limit=512M temp/nette-coding-standard/ecs check src tests --preset project --fix"
 	},
-	"minimum-stability": "dev",
+	"minimum-stability": "stable",
 	"extra": {
 		"branch-alias": {
 			"dev-master": "2.0-dev"
